@@ -771,3 +771,37 @@ footer {
   .book-cover-image { height: auto; aspect-ratio: 5 / 8; }
   .book-cover-image-detail { width: min(240px, 100%); }
 }
+
+/* KDK HERO BACKGROUND */
+.hero-home {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero-home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background-image: url("/assets/logo-kdk.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75% auto;
+
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.hero-home > .container {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .hero-home::before {
+    background-size: 110% auto;
+    opacity: 0.10;
+  }
+}

@@ -140,7 +140,7 @@ class KDKWebsiteApp {
   private renderBeranda(): string {
     return `
       <!-- Hero Section -->
-      <section class="hero">
+      <section class="hero hero-home">
         <div class="container">
           <div class="hero-content">
             <h1>Menerbitkan Kualitas, Menjangkau Dunia</h1>
