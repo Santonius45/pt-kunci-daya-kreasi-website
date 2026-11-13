@@ -28,20 +28,20 @@ class KDKWebsiteApp {
         format: 'Paperback',
         publisher: 'PT Kunci Daya Kreasi',
         isbnStatus: 'Akan diajukan',
-        releaseStatus: 'Dalam Persiapan Penerbitan'
+        releaseStatus: 'Dalam Persiapan'
       },
       {
         format: 'Hardcover',
         publisher: 'PT Kunci Daya Kreasi',
         isbnStatus: 'Akan diajukan',
-        releaseStatus: 'Dalam Persiapan Penerbitan'
+        releaseStatus: 'Dalam Persiapan'
       }
     ],
     synopsis: 'Di tengah era kemajuan kecerdasan buatan (Artificial Intelligence) yang pesat, muncul pertanyaan-pertanyaan mendasar mengenai kesadaran, penciptaan, dan kebenaran rohani. Buku ini menyajikan penjelajahan filosofis dan teologis yang menggugah, mempertemukan rasionalitas teknologi modern dengan pengalaman perjumpaan transenden bersama Sang Pencipta.',
     digitalHistory: {
       description: 'Buku ini sebelumnya telah diterbitkan secara mandiri oleh penulis dalam format digital melalui platform global (Amazon Kindle & Google Play Books). Edisi digital tersebut merupakan publikasi mandiri penulis dan bukan edisi yang diterbitkan oleh PT Kunci Daya Kreasi.',
-      amazonUrl: 'https://www.amazon.com',
-      googlePlayUrl: 'https://play.google.com/store/books'
+      amazonUrl: 'https://www.amazon.com/dp/B0HLLJ39JK',
+      googlePlayUrl: 'https://play.google.com/store/books/details?id=tOcfEgAAQBAJ&pli=1'
     }
   };
 
@@ -83,8 +83,14 @@ class KDKWebsiteApp {
     return `
       <header>
         <div class="container header-container">
-          <div class="logo-link" id="nav-logo">
-            <img class="header-logo" src="/assets/logo-kdk-white.png" alt="Logo PT Kunci Daya Kreasi">
+          <div class="logo-link brand-lockup" id="nav-logo" aria-label="PT Kunci Daya Kreasi">
+            <span class="brand-mark">
+              <img src="/assets/logo-kdk-white.png" alt="">
+            </span>
+            <span class="brand-wordmark">
+              <strong>KDK</strong>
+              <small>PT KUNCI DAYA KREASI</small>
+            </span>
           </div>
           <div class="nav-right">
             <nav>
@@ -110,7 +116,15 @@ class KDKWebsiteApp {
         <div class="container">
           <div class="footer-grid">
             <div class="footer-col">
-              <img class="footer-logo" src="/assets/logo-kdk-white.png" alt="Logo PT Kunci Daya Kreasi">
+              <div class="footer-brand brand-lockup" aria-label="PT Kunci Daya Kreasi">
+                <span class="brand-mark">
+                  <img src="/assets/logo-kdk-white.png" alt="">
+                </span>
+                <span class="brand-wordmark">
+                  <strong>KDK</strong>
+                  <small>PT KUNCI DAYA KREASI</small>
+                </span>
+              </div>
               <h4>${this.company.legalName}</h4>
               <p>${this.company.slogan}.<br>${this.company.positioning}.</p>
               <p style="font-size: 13px; color: rgba(255,255,255,0.6);">KBLI: ${this.company.kbliCode} — Penerbitan Buku Berbadan Hukum Indonesia.</p>
@@ -145,7 +159,8 @@ class KDKWebsiteApp {
           <div class="hero-content">
             <h1>Menerbitkan Kualitas, Menjangkau Dunia</h1>
             <div class="subtitle">Penerbit Buku Independen Indonesia dengan Visi Internasional</div>
-            <p>PT Kunci Daya Kreasi hadir sebagai perusahaan penerbitan buku independen yang berkomitmen terhadap kualitas karya, integritas intelektual, dan profesionalisme penerbitan. Dengan visi yang berorientasi internasional, kami berupaya menghadirkan karya-karya bermutu yang memiliki nilai dan relevansi bagi pembaca lintas negara dan budaya.</p>
+            <p>PT Kunci Daya Kreasi hadir sebagai perusahaan penerbitan buku independen yang berkomitmen terhadap kualitas karya, integritas intelektual, dan profesionalisme penerbitan.</p>
+            <p>Dengan visi yang berorientasi internasional, kami berupaya menghadirkan karya-karya bermutu yang memiliki nilai dan relevansi bagi pembaca lintas negara dan budaya.</p>
             <button class="btn" id="btn-hero-katalog">Jelajahi Katalog Buku →</button>
           </div>
         </div>
@@ -193,7 +208,7 @@ class KDKWebsiteApp {
               <img class="book-cover-image" src="/assets/spirit-and-truth-cover.jpg" alt="Sampul buku ${this.book.title} karya ${this.book.author}">
             </div>
             <div class="book-details-content">
-              <span class="badge">Dalam Persiapan Penerbitan</span>
+              <span class="badge">Dalam Persiapan</span>
               <h3>${this.book.title}</h3>
               <div class="book-subtitle">${this.book.subtitle}</div>
               <p class="book-desc">Publikasi tersebut merupakan edisi cetak dari sebuah karya berbahasa Inggris yang sebelumnya telah diterbitkan secara mandiri oleh penulisnya dalam format digital. Penerbitan ini menjadi langkah awal perusahaan dalam mengembangkan publikasi berkualitas dengan orientasi pembaca internasional.</p>
@@ -218,7 +233,7 @@ class KDKWebsiteApp {
         <div class="container" style="max-width: 700px;">
           <h2>Jelajahi Publikasi Kami</h2>
           <div class="gold-divider"></div>
-          <p style="margin: 20px 0 30px 0; color: var(--slate); font-size: 17px;">Temukan informasi mengenai karya yang sedang dipersiapkan maupun yang telah diterbitkan oleh PT Kunci Daya Kreasi.</p>
+          
           <button class="btn" id="btn-bottom-katalog">Lihat Katalog Buku</button>
         </div>
       </section>
@@ -231,7 +246,7 @@ class KDKWebsiteApp {
         <div class="container">
           <div class="hero-content">
             <h1>Tentang Kami</h1>
-            <div class="subtitle">Profil Perusahaan, Visi, Misi, dan Kebijakan Editorial</div>
+            <div class="subtitle">Profil Perusahaan dan Identitas Badan Usaha</div>
           </div>
         </div>
       </section>
@@ -248,7 +263,7 @@ class KDKWebsiteApp {
               <p>Dengan mengedepankan independensi editorial dan profesionalisme, PT Kunci Daya Kreasi berupaya membangun kegiatan penerbitan yang berkualitas, berkelanjutan, dan memiliki perspektif internasional.</p>
             </div>
             <div class="info-box">
-              <h3 style="margin-bottom: 10px;">Informasi Badan Usaha</h3>
+              <h3 style="margin-bottom: 10px;">Profil Perusahaan dan Identitas Badan Usaha</h3>
               <p style="font-size: 14px; color: var(--slate); margin-bottom: 20px;">Detail legalitas dan operasional perusahaan sesuai pendaftaran resmi.</p>
               <table class="info-table">
                 <tr><th>Nama Badan Hukum</th><td>${this.company.legalName}</td></tr>
@@ -270,7 +285,7 @@ class KDKWebsiteApp {
             <p>Arah dan komitmen jangka panjang dalam dunia penerbitan.</p>
           </div>
 
-          <div style="background: var(--white); padding: 50px; border-radius: 12px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(16,44,76,0.05); border-left: 6px solid var(--gold);">
+          <div class="vision-card" style="background: var(--white); padding: 40px; border-radius: 12px; margin: 0 auto 32px; box-shadow: 0 10px 30px rgba(16,44,76,0.05); border-left: 6px solid var(--gold);">
             <h3 style="font-size: 24px; margin-bottom: 14px; color: var(--navy);">Visi Kami</h3>
             <p style="font-size: 17px; line-height: 1.8;">Menjadi perusahaan penerbitan independen yang dikenal atas kualitas karya, integritas editorial, dan kontribusinya dalam menghadirkan publikasi bernilai bagi pembaca di tingkat nasional maupun internasional.</p>
           </div>
@@ -326,7 +341,8 @@ class KDKWebsiteApp {
           <div style="display: flex; flex-direction: column; gap: 40px;">
             <div style="background: var(--white); padding: 40px; border-radius: 10px; box-shadow: 0 8px 25px rgba(16,44,76,0.04);">
               <h3 style="font-size: 22px; margin-bottom: 14px; color: var(--navy);">Filosofi Penerbitan</h3>
-              <p style="font-size: 16px; line-height: 1.8;">Kami percaya bahwa kualitas sebuah buku terutama ditentukan oleh substansi dan nilai yang disampaikannya. Oleh karena itu, PT Kunci Daya Kreasi menempatkan kualitas, orisinalitas, dan integritas intelektual sebagai pertimbangan utama dalam memilih serta mengembangkan karya yang diterbitkan.</p>
+              <p style="font-size: 16px; line-height: 1.8; margin-bottom: 14px;">Kami percaya bahwa kualitas sebuah buku terutama ditentukan oleh substansi dan nilai yang disampaikannya.</p>
+              <p style="font-size: 16px; line-height: 1.8;">Oleh karena itu, PT Kunci Daya Kreasi menempatkan kualitas, orisinalitas, dan integritas intelektual sebagai pertimbangan utama dalam memilih serta mengembangkan karya yang diterbitkan.</p>
             </div>
 
             <div style="background: var(--white); padding: 40px; border-radius: 10px; box-shadow: 0 8px 25px rgba(16,44,76,0.04);">
@@ -337,7 +353,8 @@ class KDKWebsiteApp {
 
             <div style="background: var(--white); padding: 40px; border-radius: 10px; box-shadow: 0 8px 25px rgba(16,44,76,0.04);">
               <h3 style="font-size: 22px; margin-bottom: 14px; color: var(--navy);">Perspektif Global</h3>
-              <p style="font-size: 16px; line-height: 1.8;">PT Kunci Daya Kreasi memiliki visi untuk mengembangkan publikasi yang dapat menjangkau pembaca lintas negara dan budaya. Orientasi internasional tersebut tidak membatasi penerbitan pada kewarganegaraan penulis, bahasa tertentu, maupun satu kelompok genre buku. Perusahaan mengutamakan kualitas dan kesesuaian karya dengan kebijakan editorialnya, sambil memperhatikan peluang publikasi dan distribusi yang lebih luas.</p>
+              <p style="font-size: 16px; line-height: 1.8; margin-bottom: 14px;">PT Kunci Daya Kreasi memiliki visi untuk mengembangkan publikasi yang dapat menjangkau pembaca lintas negara dan budaya. Orientasi internasional tersebut tidak membatasi penerbitan pada kewarganegaraan penulis, bahasa tertentu, maupun satu kelompok genre buku.</p>
+              <p style="font-size: 16px; line-height: 1.8;">Perusahaan mengutamakan kualitas dan kesesuaian karya dengan kebijakan editorialnya, sambil memperhatikan peluang publikasi dan distribusi yang lebih luas.</p>
             </div>
           </div>
         </div>
@@ -351,7 +368,7 @@ class KDKWebsiteApp {
         <div class="container">
           <div class="hero-content">
             <h1>Katalog Buku</h1>
-            <div class="subtitle">Daftar Publikasi dan Karya Pilihan PT Kunci Daya Kreasi</div>
+            <div class="subtitle">Daftar publikasi atau karya yang sedang dipersiapkan untuk penerbitan</div>
           </div>
         </div>
       </section>
@@ -359,18 +376,18 @@ class KDKWebsiteApp {
       <section>
         <div class="container">
           <div class="section-header" style="text-align: left; margin-bottom: 40px;">
-            <p style="font-size: 18px; color: var(--charcoal); line-height: 1.8;">Jelajahi publikasi PT Kunci Daya Kreasi, termasuk karya yang telah diterbitkan maupun yang sedang dipersiapkan untuk penerbitan. Setiap publikasi dikembangkan dengan memperhatikan kualitas substansi, integritas editorial, dan standar penerbitan profesional.</p>
+            <p style="font-size: 18px; color: var(--charcoal); line-height: 1.8;">Sebagai perusahaan penerbitan yang baru dibentuk, saat ini kami sedang mempersiapkan sebuah karya buku untuk diterbitkan, dengan memperhatikan kualitas substansi, integritas editorial, dan standar penerbitan profesional.</p>
             <div class="gold-divider" style="margin: 20px 0 0 0;"></div>
           </div>
 
-          <h3 style="font-size: 24px; margin-bottom: 24px; color: var(--navy);">Katalog Perdana</h3>
+          <h3 style="font-size: 24px; margin-bottom: 24px; color: var(--navy);">Karya yang Sedang Dipersiapkan</h3>
 
           <div class="featured-book-wrapper">
             <div class="book-cover-container">
               <img class="book-cover-image" src="/assets/spirit-and-truth-cover.jpg" alt="Sampul buku ${this.book.title} karya ${this.book.author}">
             </div>
             <div class="book-details-content">
-              <span class="badge">Dalam Persiapan Penerbitan</span>
+              <span class="badge">Dalam Persiapan</span>
               <h3>${this.book.title}</h3>
               <div class="book-subtitle">${this.book.subtitle}</div>
               <p class="book-desc">Edisi cetak perdana dalam format paperback dan hardcover. Karya ini menghadirkan permenungan mendalam mengenai persimpangan antara kecerdasan buatan (AI), kebenaran rohani, dan transformasi iman di era kontemporer.</p>
@@ -417,14 +434,14 @@ class KDKWebsiteApp {
                 <h4 style="font-size: 18px; margin-bottom: 14px; color: var(--navy);">Riwayat Publikasi Digital</h4>
                 <p style="font-size: 14px; color: var(--charcoal); margin-bottom: 16px; line-height: 1.6;">${this.book.digitalHistory.description}</p>
                 <div style="display: flex; flex-direction: column; gap: 10px;">
-                  <a href="${this.book.digitalHistory.amazonUrl}" target="_blank" class="btn btn-outline" style="justify-content: center; font-size: 13px; padding: 10px;">Amazon Kindle Edition ↗</a>
-                  <a href="${this.book.digitalHistory.googlePlayUrl}" target="_blank" class="btn btn-outline" style="justify-content: center; font-size: 13px; padding: 10px;">Google Play Books Edition ↗</a>
+                  <a href="${this.book.digitalHistory.amazonUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="justify-content: center; font-size: 13px; padding: 10px;">Amazon Kindle Edition ↗</a>
+                  <a href="${this.book.digitalHistory.googlePlayUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="justify-content: center; font-size: 13px; padding: 10px;">Google Play Books Edition ↗</a>
                 </div>
               </div>
             </div>
 
             <div>
-              <span class="badge">Publikasi Perdana — Dalam Persiapan</span>
+              <span class="badge">Dalam Persiapan</span>
               <h2 style="font-size: 34px; margin-bottom: 10px;">${this.book.title}</h2>
               <div style="font-size: 18px; color: var(--slate); font-family: 'Playfair Display', serif; margin-bottom: 24px;">${this.book.subtitle}</div>
               
@@ -468,8 +485,8 @@ class KDKWebsiteApp {
       <section class="hero" style="padding: 70px 0;">
         <div class="container">
           <div class="hero-content">
-            <h1>Kontak Resmi</h1>
-            <div class="subtitle">Saluran Komunikasi dan Informasi Korporat PT Kunci Daya Kreasi</div>
+            <h1>Informasi &amp; Korespondensi</h1>
+            <div class="subtitle">Saluran Komunikasi dan Informasi Perusahaan</div>
           </div>
         </div>
       </section>

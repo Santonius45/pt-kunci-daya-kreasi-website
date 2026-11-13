@@ -772,26 +772,96 @@ footer {
   .book-cover-image-detail { width: min(240px, 100%); }
 }
 
-/* KDK HERO BACKGROUND */
+
+/* =========================================
+   CLIENT REVIEW UPDATE — BRAND LOCKUP
+========================================= */
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.brand-mark {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 9px;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.18);
+}
+
+.brand-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.brand-wordmark {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.1;
+}
+
+.brand-wordmark strong {
+  color: var(--white);
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.brand-wordmark small {
+  margin-top: 5px;
+  color: var(--gold);
+  font-family: 'Lato', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.35px;
+  white-space: nowrap;
+}
+
+.footer-brand {
+  margin-bottom: 22px;
+}
+
+/* =========================================
+   CLIENT REVIEW UPDATE — HOMEPAGE BANNER
+   Layered dusk tones and mountain silhouettes
+   replace the plain navy banner without adding
+   external image dependencies.
+========================================= */
 .hero-home {
-  position: relative;
   isolation: isolate;
-  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 14% 28%, rgba(206, 151, 82, 0.48) 0%, rgba(206, 151, 82, 0.13) 27%, transparent 48%),
+    radial-gradient(ellipse at 82% 16%, rgba(101, 124, 145, 0.25) 0%, transparent 42%),
+    linear-gradient(115deg, #3b4654 0%, #25384f 43%, #142941 100%);
 }
 
 .hero-home::before {
-  content: "";
+  content: '';
   position: absolute;
-  inset: 0;
+  inset: auto 0 0;
+  height: 68%;
   z-index: 0;
-
-  background-image: url("/assets/logo-kdk.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 75% auto;
-
-  opacity: 0.12;
   pointer-events: none;
+  opacity: 0.92;
+  background:
+    linear-gradient(180deg, rgba(27, 43, 61, 0.15), rgba(9, 24, 42, 0.92));
+  clip-path: polygon(
+    0 55%, 9% 43%, 17% 58%, 27% 35%, 37% 62%,
+    48% 28%, 58% 56%, 69% 39%, 80% 60%, 91% 36%,
+    100% 52%, 100% 100%, 0 100%
+  );
 }
 
 .hero-home > .container {
@@ -799,9 +869,101 @@ footer {
   z-index: 1;
 }
 
+.hero-home .hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-home h1 {
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.25);
+}
+
+.hero-home .subtitle {
+  color: #e4bd70;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.hero-home p {
+  max-width: 800px;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+}
+
+.hero-home p:last-of-type {
+  margin-bottom: 40px;
+}
+
+.vision-card {
+  max-width: 900px;
+}
+
+.hero-home::after {
+  z-index: 3;
+}
+
+/* Catalog and detail links remain readable and clearly actionable. */
+.book-details-content .badge {
+  white-space: normal;
+}
+
+.book-details-content .book-desc {
+  line-height: 1.8;
+}
+
+@media (max-width: 992px) {
+  .brand-mark {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+  }
+
+  .brand-wordmark strong {
+    font-size: 23px;
+  }
+}
+
 @media (max-width: 768px) {
+  .header-container {
+    height: 78px;
+  }
+
+  .brand-lockup {
+    gap: 9px;
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+    padding: 6px;
+  }
+
+  .brand-wordmark strong {
+    font-size: 21px;
+  }
+
+  .brand-wordmark small {
+    font-size: 8px;
+    letter-spacing: 0.9px;
+  }
+
+  .hero-home {
+    padding: 82px 0 100px;
+  }
+
   .hero-home::before {
-    background-size: 110% auto;
-    opacity: 0.10;
+    height: 54%;
+    clip-path: polygon(
+      0 57%, 18% 42%, 34% 60%, 51% 35%,
+      68% 59%, 84% 42%, 100% 58%, 100% 100%, 0 100%
+    );
+  }
+
+  .hero-home .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-home h1 {
+    font-size: 36px;
   }
 }
