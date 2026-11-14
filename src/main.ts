@@ -3,6 +3,7 @@ import { PageRoute, ContactFormData, BookDetail, CompanyInfo } from './types';
 class KDKWebsiteApp {
   private currentRoute: PageRoute = 'beranda';
   private appContainer: HTMLElement;
+  private eventController: AbortController | null = null;
 
   private company: CompanyInfo = {
     legalName: 'PT Kunci Daya Kreasi',
@@ -59,8 +60,25 @@ class KDKWebsiteApp {
 
   public navigateTo(route: PageRoute): void {
     this.currentRoute = route;
+    this.setMobileMenuOpen(false);
     this.render();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  private setMobileMenuOpen(isOpen: boolean): void {
+    const button = document.getElementById('btn-mobile') as HTMLButtonElement | null;
+    const navigation = document.getElementById('primary-navigation');
+
+    navigation?.classList.toggle('is-open', isOpen);
+    navigation?.setAttribute('aria-hidden', String(!isOpen));
+    button?.setAttribute('aria-expanded', String(isOpen));
+    button?.setAttribute('aria-label', isOpen ? 'Tutup navigasi' : 'Buka navigasi');
+
+    if (button) {
+      button.innerHTML = isOpen
+        ? '<span aria-hidden="true">×</span>'
+        : '<span aria-hidden="true">☰</span>';
+    }
   }
 
   private showToast(message: string): void {
@@ -94,10 +112,10 @@ class KDKWebsiteApp {
           <div class="nav-right">
             <nav id="primary-navigation" aria-label="Navigasi utama">
               <ul>
-                <li><a class="${this.currentRoute === 'beranda' ? 'active' : ''}" id="nav-beranda">Beranda</a></li>
-                <li><a class="${this.currentRoute === 'tentang' ? 'active' : ''}" id="nav-tentang">Tentang Kami</a></li>
-                <li><a class="${this.currentRoute === 'katalog' || this.currentRoute === 'detail' ? 'active' : ''}" id="nav-katalog">Katalog Buku</a></li>
-                <li><a class="${this.currentRoute === 'kontak' ? 'active' : ''}" id="nav-kontak">Kontak</a></li>
+                <li><a href="#beranda" class="${this.currentRoute === 'beranda' ? 'active' : ''}" id="nav-beranda" ${this.currentRoute === 'beranda' ? 'aria-current="page"' : ''}>Beranda</a></li>
+                <li><a href="#tentang" class="${this.currentRoute === 'tentang' ? 'active' : ''}" id="nav-tentang" ${this.currentRoute === 'tentang' ? 'aria-current="page"' : ''}>Tentang Kami</a></li>
+                <li><a href="#katalog" class="${this.currentRoute === 'katalog' || this.currentRoute === 'detail' ? 'active' : ''}" id="nav-katalog" ${this.currentRoute === 'katalog' || this.currentRoute === 'detail' ? 'aria-current="page"' : ''}>Katalog Buku</a></li>
+                <li><a href="#kontak" class="${this.currentRoute === 'kontak' ? 'active' : ''}" id="nav-kontak" ${this.currentRoute === 'kontak' ? 'aria-current="page"' : ''}>Kontak</a></li>
               </ul>
             </nav>
             <button class="search-btn" id="btn-search" title="Cari Katalog">🔍</button>
@@ -423,7 +441,7 @@ class KDKWebsiteApp {
           <div class="detail-layout" style="display: grid; grid-template-columns: 380px 1fr; gap: 50px; align-items: start;">
             
             <div>
-              <div style="background: linear-gradient(135deg, #be6703, #A94F24); padding: 40px; border-radius: 12px; display: flex; justify-content: center; box-shadow: 0 12px 30px rgba(16,44,76,0.1); margin-bottom: 24px;">
+              <div class="detail-cover-panel">
                 <img class="book-cover-image book-cover-image-detail" src="/assets/spirit-and-truth-cover.jpg" alt="Sampul buku ${this.book.title} karya ${this.book.author}">
               </div>
 
@@ -593,27 +611,41 @@ class KDKWebsiteApp {
   }
 
   private bindEvents(): void {
-    // Accessible mobile navigation toggle.
+    // Each render replaces the page DOM. Abort document-level listeners from
+    // the previous render so clicks are never handled multiple times.
+    this.eventController?.abort();
+    this.eventController = new AbortController();
+    const { signal } = this.eventController;
+
+    const header = document.querySelector('header');
     const mobileMenuButton = document.getElementById('btn-mobile') as HTMLButtonElement | null;
     const primaryNavigation = document.getElementById('primary-navigation');
 
-    mobileMenuButton?.addEventListener('click', () => {
-      const isOpen = primaryNavigation?.classList.toggle('is-open') ?? false;
-      mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
-      mobileMenuButton.setAttribute('aria-label', isOpen ? 'Tutup navigasi' : 'Buka navigasi');
-      mobileMenuButton.innerHTML = isOpen
-        ? '<span aria-hidden="true">×</span>'
-        : '<span aria-hidden="true">☰</span>';
+    mobileMenuButton?.addEventListener('click', (event: MouseEvent) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const isOpen = mobileMenuButton.getAttribute('aria-expanded') !== 'true';
+      this.setMobileMenuOpen(isOpen);
     });
 
-    // Close the dropdown when another part of the header is selected.
-    document.querySelector('header')?.addEventListener('click', (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (target.closest('#btn-mobile') || target.closest('#primary-navigation')) return;
-      primaryNavigation?.classList.remove('is-open');
-      mobileMenuButton?.setAttribute('aria-expanded', 'false');
-      mobileMenuButton?.setAttribute('aria-label', 'Buka navigasi');
-      if (mobileMenuButton) mobileMenuButton.innerHTML = '<span aria-hidden="true">☰</span>';
+    // Close only when the user taps outside the header/menu.
+    document.addEventListener('pointerdown', (event: PointerEvent) => {
+      const target = event.target;
+      if (target instanceof Node && header?.contains(target)) return;
+      this.setMobileMenuOpen(false);
+    }, { signal });
+
+    // Escape consistently closes the mobile menu.
+    document.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && primaryNavigation?.classList.contains('is-open')) {
+        this.setMobileMenuOpen(false);
+        mobileMenuButton?.focus();
+      }
+    }, { signal });
+
+    // A navigation selection closes the menu before rendering the destination.
+    primaryNavigation?.querySelectorAll<HTMLAnchorElement>('a').forEach((link) => {
+      link.addEventListener('click', (event: MouseEvent) => event.preventDefault());
     });
 
     // Allow keyboard users to activate the brand link.
@@ -624,7 +656,7 @@ class KDKWebsiteApp {
       }
     });
 
-    // Navigation listeners
+    // Navigation listeners. Prevent hash jumps; the SPA controls page rendering.
     document.getElementById('nav-logo')?.addEventListener('click', () => this.navigateTo('beranda'));
     document.getElementById('nav-beranda')?.addEventListener('click', () => this.navigateTo('beranda'));
     document.getElementById('nav-tentang')?.addEventListener('click', () => this.navigateTo('tentang'));

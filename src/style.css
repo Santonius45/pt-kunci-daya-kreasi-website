@@ -6,6 +6,7 @@
 :root {
   --navy: #102C4C;
   --gold: #C69A4B;
+  --book-orange: #BE6703;
   --ivory: #F8F7F3;
   --charcoal: #30343A;
   --slate: #587A99;
@@ -54,6 +55,7 @@ ul {
 /* Header Navbar matching Visual Guidelines Mockup */
 header {
   background-color: var(--navy);
+  isolation: isolate;
   color: var(--white);
   position: sticky;
   top: 0;
@@ -357,9 +359,30 @@ section {
   font-size: 15px;
 }
 
+
+/* Shared book-cover presentation for catalog, homepage and detail pages. */
+.detail-cover-panel {
+  color-scheme: light;
+  background-color: var(--book-orange);
+  background-image: linear-gradient(135deg, #BE6703 0%, #A94F24 100%);
+  padding: 40px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(16, 44, 76, 0.1);
+  margin-bottom: 24px;
+}
+
+.book-details-content {
+  color-scheme: light;
+  background-color: #FFFFFF;
+}
+
 /* Featured Book Container */
 .featured-book-wrapper {
-  background: var(--white);
+  color-scheme: light;
+  background-color: #FFFFFF;
+  background: #FFFFFF;
   border-radius: 14px;
   box-shadow: 0 15px 45px rgba(16, 44, 76, 0.07);
   display: grid;
@@ -369,7 +392,9 @@ section {
 }
 
 .book-cover-container {
-  background: linear-gradient(135deg, #be6703);
+  color-scheme: light;
+  background-color: var(--book-orange);
+  background-image: linear-gradient(135deg, #BE6703 0%, #A94F24 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -394,7 +419,7 @@ section {
 .book-cover-mockup {
   width: 240px;
   height: 340px;
-  background: #be6703;
+  background: var(--book-orange);
   border-radius: 8px;
   box-shadow: 0 20px 45px rgba(0,0,0,0.45);
   padding: 26px;
@@ -754,22 +779,37 @@ footer {
     gap: 0;
   }
 
+  .header-container {
+    position: relative;
+    overflow: visible;
+  }
+
+  .nav-right {
+    position: static;
+  }
+
   .nav-right nav {
     display: none;
     position: absolute;
     top: 100%;
     right: 24px;
-    z-index: 1001;
-    width: min(290px, calc(100vw - 48px));
+    z-index: 2002;
+    width: min(320px, calc(100vw - 48px));
+    max-height: min(70vh, 420px);
+    overflow-y: auto;
     padding: 10px;
-    background: var(--navy);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    background-color: #102C4C;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+    -webkit-overflow-scrolling: touch;
   }
 
   .nav-right nav.is-open {
     display: block;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav-right nav ul {
@@ -784,7 +824,9 @@ footer {
   }
 
   .nav-right nav a {
-    display: block;
+    display: flex;
+    align-items: center;
+    min-height: 46px;
     width: 100%;
     padding: 12px 14px;
     border-radius: 6px;
@@ -806,6 +848,8 @@ footer {
   }
 
   .mobile-menu-btn {
+    position: relative;
+    z-index: 2003;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1440,5 +1484,37 @@ button,
   .contact-form-card {
     padding-left: 16px;
     padding-right: 16px;
+  }
+}
+
+
+/* Final mobile safeguards: preserve the light publication-card design. */
+@media (max-width: 992px) {
+  .featured-book-wrapper {
+    background-color: #FFFFFF;
+    background: #FFFFFF;
+  }
+
+  .book-cover-container,
+  .detail-cover-panel {
+    background-color: #BE6703;
+    background-image: linear-gradient(135deg, #BE6703 0%, #A94F24 100%);
+  }
+
+  .book-details-content {
+    background-color: #FFFFFF;
+    color: #30343A;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-right nav {
+    top: 100%;
+    right: 16px;
+    width: min(320px, calc(100vw - 32px));
+  }
+
+  .detail-cover-panel {
+    padding: 22px;
   }
 }
