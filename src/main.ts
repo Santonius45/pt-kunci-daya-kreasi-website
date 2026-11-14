@@ -83,17 +83,16 @@ class KDKWebsiteApp {
     return `
       <header>
         <div class="container header-container">
-          <div class="logo-link brand-lockup" id="nav-logo" aria-label="PT Kunci Daya Kreasi">
+          <div class="logo-link brand-lockup" id="nav-logo" role="link" tabindex="0" aria-label="PT Kunci Daya Kreasi - Beranda">
             <span class="brand-mark">
-              <img src="/assets/logo-kdk-white.png" alt="">
+              <img src="/assets/logo-kdk-white-cropped.png" alt="">
             </span>
             <span class="brand-wordmark">
-              <strong></strong>
-              <medium>PT KUNCI DAYA KREASI</medium>
+              <strong>PT KUNCI DAYA KREASI</strong>
             </span>
           </div>
           <div class="nav-right">
-            <nav>
+            <nav id="primary-navigation" aria-label="Navigasi utama">
               <ul>
                 <li><a class="${this.currentRoute === 'beranda' ? 'active' : ''}" id="nav-beranda">Beranda</a></li>
                 <li><a class="${this.currentRoute === 'tentang' ? 'active' : ''}" id="nav-tentang">Tentang Kami</a></li>
@@ -104,7 +103,10 @@ class KDKWebsiteApp {
             <button class="search-btn" id="btn-search" title="Cari Katalog">🔍</button>
             <button class="lang-switch" id="btn-lang">ID / EN</button>
           </div>
-          <button class="mobile-menu-btn" id="btn-mobile">☰</button>
+          <button class="mobile-menu-btn" id="btn-mobile" type="button"
+            aria-label="Buka navigasi" aria-controls="primary-navigation" aria-expanded="false">
+            <span aria-hidden="true">☰</span>
+          </button>
         </div>
       </header>
     `;
@@ -118,16 +120,14 @@ class KDKWebsiteApp {
             <div class="footer-col">
               <div class="footer-brand brand-lockup" aria-label="PT Kunci Daya Kreasi">
                 <span class="brand-mark">
-                  <img src="/assets/logo-kdk-white.png" alt="">
+                  <img src="/assets/logo-kdk-white-cropped.png" alt="">
                 </span>
                 <span class="brand-wordmark">
-                  <strong></strong>
-                  <medium>PT KUNCI DAYA KREASI</medium>
+                  <strong>PT KUNCI DAYA KREASI</strong>
                 </span>
               </div>
               <h4>${this.company.legalName}</h4>
               <p>${this.company.slogan}.<br>${this.company.positioning}.</p>
-              <p style="font-size: 13px; color: rgba(255,255,255,0.6);">KBLI: ${this.company.kbliCode} — Penerbitan Buku Berbadan Hukum Indonesia.</p>
             </div>
             <div class="footer-col">
               <h4>Navigasi</h4>
@@ -261,8 +261,7 @@ class KDKWebsiteApp {
               <p>Dengan mengedepankan independensi editorial dan profesionalisme, PT Kunci Daya Kreasi berupaya membangun kegiatan penerbitan yang berkualitas, berkelanjutan, dan memiliki perspektif internasional.</p>
             </div>
             <div class="info-box">
-              <h3 style="margin-bottom: 10px;">Profil Perusahaan dan Identitas Badan Usaha</h3>
-              <p style="font-size: 14px; color: var(--slate); margin-bottom: 20px;">Detail legalitas dan operasional perusahaan sesuai pendaftaran resmi.</p>
+              <h3 style="margin-bottom: 10px;">Data Legalitas dan Operasional Perusahaan</h3>
               <table class="info-table">
                 <tr><th>Nama Badan Hukum</th><td>${this.company.legalName}</td></tr>
                 <tr><th>Bentuk Badan Hukum</th><td>${this.company.legalEntityForm}</td></tr>
@@ -424,7 +423,7 @@ class KDKWebsiteApp {
           <div style="display: grid; grid-template-columns: 380px 1fr; gap: 50px; align-items: start;">
             
             <div>
-              <div style="background: linear-gradient(135deg, var(--navy), #1a3d68); padding: 40px; border-radius: 12px; display: flex; justify-content: center; box-shadow: 0 12px 30px rgba(16,44,76,0.1); margin-bottom: 24px;">
+              <div style="background: linear-gradient(135deg, #be6703, #A94F24); padding: 40px; border-radius: 12px; display: flex; justify-content: center; box-shadow: 0 12px 30px rgba(16,44,76,0.1); margin-bottom: 24px;">
                 <img class="book-cover-image book-cover-image-detail" src="/assets/spirit-and-truth-cover.jpg" alt="Sampul buku ${this.book.title} karya ${this.book.author}">
               </div>
 
@@ -448,7 +447,7 @@ class KDKWebsiteApp {
                 <p style="font-size: 16px; line-height: 1.8; color: var(--charcoal); margin-bottom: 16px;">${this.book.synopsis}</p>
               </div>
 
-              <h3 style="font-size: 22px; margin-bottom: 20px; color: var(--navy);">Informasi Edisi Cetak (${this.company.legalName})</h3>
+              <h3 style="font-size: 22px; margin-bottom: 20px; color: var(--navy);">Format Edisi Cetak</h3>
               
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
                 ${this.book.editions.map(ed => `
@@ -594,6 +593,37 @@ class KDKWebsiteApp {
   }
 
   private bindEvents(): void {
+    // Accessible mobile navigation toggle.
+    const mobileMenuButton = document.getElementById('btn-mobile') as HTMLButtonElement | null;
+    const primaryNavigation = document.getElementById('primary-navigation');
+
+    mobileMenuButton?.addEventListener('click', () => {
+      const isOpen = primaryNavigation?.classList.toggle('is-open') ?? false;
+      mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
+      mobileMenuButton.setAttribute('aria-label', isOpen ? 'Tutup navigasi' : 'Buka navigasi');
+      mobileMenuButton.innerHTML = isOpen
+        ? '<span aria-hidden="true">×</span>'
+        : '<span aria-hidden="true">☰</span>';
+    });
+
+    // Close the dropdown when another part of the header is selected.
+    document.querySelector('header')?.addEventListener('click', (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (target.closest('#btn-mobile') || target.closest('#primary-navigation')) return;
+      primaryNavigation?.classList.remove('is-open');
+      mobileMenuButton?.setAttribute('aria-expanded', 'false');
+      mobileMenuButton?.setAttribute('aria-label', 'Buka navigasi');
+      if (mobileMenuButton) mobileMenuButton.innerHTML = '<span aria-hidden="true">☰</span>';
+    });
+
+    // Allow keyboard users to activate the brand link.
+    document.getElementById('nav-logo')?.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        this.navigateTo('beranda');
+      }
+    });
+
     // Navigation listeners
     document.getElementById('nav-logo')?.addEventListener('click', () => this.navigateTo('beranda'));
     document.getElementById('nav-beranda')?.addEventListener('click', () => this.navigateTo('beranda'));

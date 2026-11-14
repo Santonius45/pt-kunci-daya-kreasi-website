@@ -369,7 +369,7 @@ section {
 }
 
 .book-cover-container {
-  background: linear-gradient(135deg, var(--gold), #25ca04);
+  background: linear-gradient(135deg, #be6703);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -394,7 +394,7 @@ section {
 .book-cover-mockup {
   width: 240px;
   height: 340px;
-  background: #102C4C;
+  background: #be6703;
   border-radius: 8px;
   box-shadow: 0 20px 45px rgba(0,0,0,0.45);
   padding: 26px;
@@ -746,12 +746,83 @@ footer {
     padding: 30px;
   }
   
+  .header-container {
+    position: relative;
+  }
+
+  .nav-right {
+    gap: 0;
+  }
+
+  .nav-right nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 24px;
+    z-index: 1001;
+    width: min(290px, calc(100vw - 48px));
+    padding: 10px;
+    background: var(--navy);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  }
+
+  .nav-right nav.is-open {
+    display: block;
+  }
+
   .nav-right nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+  }
+
+  .nav-right nav li {
+    width: 100%;
+  }
+
+  .nav-right nav a {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 15px;
+  }
+
+  .nav-right nav a:hover,
+  .nav-right nav a.active {
+    background: rgba(198, 154, 75, 0.12);
+  }
+
+  .nav-right nav a::after {
     display: none;
   }
-  
+
+  .nav-right .search-btn,
+  .nav-right .lang-switch {
+    display: none;
+  }
+
   .mobile-menu-btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-left: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    font-size: 27px;
+    line-height: 1;
+  }
+
+  .mobile-menu-btn:hover,
+  .mobile-menu-btn:focus-visible {
+    color: var(--gold);
+    border-color: var(--gold);
+    outline: none;
   }
 
   .header-logo {
@@ -912,13 +983,14 @@ footer {
 
 @media (max-width: 992px) {
   .brand-mark {
-    width: 44px;
-    height: 44px;
-    flex-basis: 44px;
+    width: 64px;
+    height: 64px;
+    flex-basis: 64px;
+    padding: 3px;
   }
 
   .brand-wordmark strong {
-    font-size: 23px;
+    font-size: 19px;
   }
 }
 
@@ -932,19 +1004,32 @@ footer {
   }
 
   .brand-mark {
-    width: 40px;
-    height: 40px;
-    flex-basis: 40px;
-    padding: 6px;
+    width: 54px;
+    height: 54px;
+    flex-basis: 54px;
+    padding: 2px;
+    border-radius: 9px;
   }
 
   .brand-wordmark strong {
-    font-size: 21px;
+    font-size: clamp(12px, 3.8vw, 16px);
+    letter-spacing: 0.15px;
+    white-space: nowrap;
   }
 
   .brand-wordmark small {
     font-size: 8px;
-    letter-spacing: 0.9px;
+    letter-spacing: 0.7px;
+  }
+
+  .nav-right nav {
+    right: 16px;
+  }
+
+  .mobile-menu-btn {
+    width: 42px;
+    height: 42px;
+    margin-left: 8px;
   }
 
   .hero-home {
