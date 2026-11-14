@@ -369,7 +369,7 @@ section {
 }
 
 .book-cover-container {
-  background: linear-gradient(135deg, var(--navy), #9bc504);
+  background: linear-gradient(135deg, var(--gold), #25ca04);
   display: flex;
   align-items: center;
   justify-content: center;
