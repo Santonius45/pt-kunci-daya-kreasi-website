@@ -420,7 +420,7 @@ class KDKWebsiteApp {
 
       <section>
         <div class="container">
-          <div style="display: grid; grid-template-columns: 380px 1fr; gap: 50px; align-items: start;">
+          <div class="detail-layout" style="display: grid; grid-template-columns: 380px 1fr; gap: 50px; align-items: start;">
             
             <div>
               <div style="background: linear-gradient(135deg, #be6703, #A94F24); padding: 40px; border-radius: 12px; display: flex; justify-content: center; box-shadow: 0 12px 30px rgba(16,44,76,0.1); margin-bottom: 24px;">
@@ -449,7 +449,7 @@ class KDKWebsiteApp {
 
               <h3 style="font-size: 22px; margin-bottom: 20px; color: var(--navy);">Format Edisi Cetak</h3>
               
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+              <div class="book-editions-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
                 ${this.book.editions.map(ed => `
                   <div style="background: var(--white); padding: 25px; border-radius: 10px; border-top: 4px solid ${ed.format === 'Paperback' ? 'var(--gold)' : 'var(--navy)'}; border: 1px solid var(--border-color); box-shadow: 0 6px 20px rgba(16,44,76,0.04);">
                     <h4 style="font-size: 18px; color: var(--navy); margin-bottom: 14px;">${ed.format} Edition</h4>

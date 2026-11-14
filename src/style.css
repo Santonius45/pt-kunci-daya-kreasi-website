@@ -1052,3 +1052,393 @@ footer {
     font-size: 36px;
   }
 }
+
+/* =========================================================
+   RESPONSIVE REFINEMENT — MOBILE/TABLET
+   This section intentionally overrides only narrow layouts.
+   Desktop styling above remains unchanged.
+========================================================= */
+
+/* Prevent intrinsic media/content widths from stretching the page. */
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+}
+
+.container,
+.header-container,
+.featured-book-wrapper,
+.about-grid,
+.contact-grid,
+.footer-grid,
+.detail-layout,
+.book-editions-grid {
+  min-width: 0;
+}
+
+/* Allow long company details, email addresses and URLs to wrap naturally. */
+.info-table td,
+.info-table th,
+.footer-col p,
+.contact-detail-item,
+.book-details-content,
+.detail-layout > *,
+.mission-item > div:last-child {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Keep form controls within their cards on every browser. */
+.form-control,
+button,
+.btn {
+  max-width: 100%;
+}
+
+@media (max-width: 992px) {
+  .container {
+    width: 100%;
+  }
+
+  /* Avoid grid children forcing a wider-than-viewport layout. */
+  .principles-grid,
+  .footer-grid,
+  .about-grid,
+  .contact-grid,
+  .featured-book-wrapper {
+    min-width: 0;
+  }
+
+  .section-header {
+    margin-bottom: 42px;
+  }
+
+  .book-details-content {
+    padding: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .section-header {
+    margin-bottom: 34px;
+  }
+
+  .section-header h2,
+  .about-text h2 {
+    font-size: clamp(27px, 6vw, 34px);
+  }
+
+  .section-header p {
+    font-size: 15px;
+  }
+
+  /* Detail publication: cover and information stack vertically. */
+  .detail-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 28px !important;
+  }
+
+  .detail-layout > * {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .detail-layout > :first-child > div:first-child {
+    padding: 24px !important;
+  }
+
+  .detail-layout .book-cover-image-detail,
+  .detail-layout img {
+    display: block;
+    width: min(240px, 100%);
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+  }
+
+  /* Paperback and hardcover cards become one column on phones. */
+  .book-editions-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  .book-editions-grid > * {
+    min-width: 0;
+  }
+
+  .book-details-content {
+    padding: 28px 22px;
+  }
+
+  .book-details-content h3 {
+    font-size: 27px;
+  }
+
+  .meta-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  /* The legal-information table is easier to read as label/value rows. */
+  .info-box {
+    padding: 26px 20px;
+  }
+
+  .info-table,
+  .info-table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .info-table tr {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .info-table tr:last-child {
+    border-bottom: 0;
+  }
+
+  .info-table th,
+  .info-table td {
+    display: block;
+    width: 100%;
+    padding: 2px 0;
+    border: 0;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .info-table td {
+    color: var(--charcoal);
+  }
+
+  /* Inline 40px cards in the About page need smaller inner spacing. */
+  .vision-card,
+  .container [style*="padding: 40px"] {
+    padding: 26px 22px !important;
+  }
+
+  /* Keep hero headings readable without oversized wrapping. */
+  .hero h1 {
+    font-size: clamp(30px, 7vw, 38px);
+    overflow-wrap: anywhere;
+  }
+
+  .hero .subtitle {
+    font-size: clamp(17px, 4.5vw, 21px);
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .hero-home {
+    padding: 76px 0 88px;
+  }
+
+  .hero-home h1 {
+    font-size: clamp(31px, 7.5vw, 36px);
+  }
+
+  .hero-home .subtitle {
+    line-height: 1.45;
+  }
+
+  /* Make cards and controls use the available width. */
+  .principle-card,
+  .contact-info-card,
+  .contact-form-card {
+    min-width: 0;
+  }
+
+  .contact-info-card {
+    padding: 28px 22px;
+  }
+
+  .contact-form-card {
+    padding: 26px 20px;
+  }
+
+  .contact-detail-item {
+    gap: 12px;
+  }
+
+  .form-control {
+    min-width: 0;
+    font-size: 16px; /* Prevents automatic zoom on iOS form focus. */
+  }
+
+  .btn {
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .toast {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    width: auto;
+    max-width: calc(100vw - 32px);
+  }
+
+  footer {
+    padding-top: 56px;
+  }
+
+  .footer-grid {
+    gap: 32px;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .header-container {
+    height: 72px;
+  }
+
+  .brand-lockup {
+    gap: 7px;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .brand-mark {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    padding: 2px;
+    border-radius: 8px;
+  }
+
+  .brand-wordmark {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .brand-wordmark strong {
+    font-size: clamp(10px, 3.35vw, 14px);
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .mobile-menu-btn {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    margin-left: 8px;
+    font-size: 24px;
+  }
+
+  .nav-right nav {
+    right: 16px;
+    width: min(290px, calc(100vw - 32px));
+  }
+
+  .hero-home {
+    padding: 66px 0 78px;
+  }
+
+  .hero-home h1 {
+    font-size: clamp(29px, 8vw, 34px);
+  }
+
+  .hero-home p:last-of-type {
+    margin-bottom: 28px;
+  }
+
+  .book-cover-container {
+    padding: 22px;
+  }
+
+  .book-cover-image {
+    width: min(220px, 100%);
+    height: auto;
+  }
+
+  .mission-item {
+    gap: 12px;
+    padding: 18px 16px;
+  }
+
+  .mission-num {
+    font-size: 22px;
+  }
+
+  .info-box {
+    padding: 22px 16px;
+  }
+
+  .contact-info-card h3 {
+    font-size: 25px;
+  }
+
+  .section-header h2 {
+    font-size: 27px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .brand-wordmark strong {
+    font-size: 10px;
+  }
+
+  .brand-wordmark small {
+    font-size: 7px;
+    letter-spacing: 0.3px;
+  }
+
+  .mobile-menu-btn {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+    margin-left: 6px;
+  }
+
+  .contact-info-card,
+  .contact-form-card {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
