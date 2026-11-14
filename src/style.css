@@ -369,7 +369,7 @@ section {
 }
 
 .book-cover-container {
-  background: linear-gradient(135deg, var(--navy), #1a3d68);
+  background: linear-gradient(135deg, var(--navy), #9bc504);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -785,15 +785,15 @@ footer {
 }
 
 .brand-mark {
-  width: 48px;
-  height: 48px;
-  flex: 0 0 48px;
+  width: 80px;
+  height: 80px;
+  flex: 0 0 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 7px;
+  padding: 1px;
   border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 9px;
+  border-radius: 12px;
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.18);
 }
 
@@ -842,7 +842,7 @@ footer {
 .hero-home {
   isolation: isolate;
   background:
-    radial-gradient(ellipse at 14% 28%, rgba(206, 151, 82, 0.48) 0%, rgba(206, 151, 82, 0.13) 27%, transparent 48%),
+    radial-gradient(ellipse at 14% 28%, rgba(82, 187, 206, 0.48) 0%, rgba(206, 151, 82, 0.13) 27%, transparent 48%),
     radial-gradient(ellipse at 82% 16%, rgba(101, 124, 145, 0.25) 0%, transparent 42%),
     linear-gradient(115deg, #3b4654 0%, #25384f 43%, #142941 100%);
 }
@@ -879,7 +879,7 @@ footer {
 }
 
 .hero-home .subtitle {
-  color: #e4bd70;
+  color: #c2e016;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 

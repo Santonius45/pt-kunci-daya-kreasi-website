@@ -11,7 +11,7 @@ class KDKWebsiteApp {
     kbliCode: '58110',
     officialDomain: 'penerbitkunci.id',
     officialEmail: 'admin@penerbitkunci.id',
-    officialAddress: 'Tangerang Selatan, Banten, Indonesia',
+    officialAddress: 'Tangerang Selatan, Banten',
     positioning: 'Penerbit Buku Independen Indonesia dengan Visi Internasional',
     slogan: 'Menerbitkan Kualitas, Menjangkau Dunia'
   };
@@ -88,8 +88,8 @@ class KDKWebsiteApp {
               <img src="/assets/logo-kdk-white.png" alt="">
             </span>
             <span class="brand-wordmark">
-              <strong>KDK</strong>
-              <small>PT KUNCI DAYA KREASI</small>
+              <strong></strong>
+              <medium>PT KUNCI DAYA KREASI</medium>
             </span>
           </div>
           <div class="nav-right">
@@ -121,8 +121,8 @@ class KDKWebsiteApp {
                   <img src="/assets/logo-kdk-white.png" alt="">
                 </span>
                 <span class="brand-wordmark">
-                  <strong>KDK</strong>
-                  <small>PT KUNCI DAYA KREASI</small>
+                  <strong></strong>
+                  <medium>PT KUNCI DAYA KREASI</medium>
                 </span>
               </div>
               <h4>${this.company.legalName}</h4>
@@ -232,9 +232,7 @@ class KDKWebsiteApp {
       <section style="text-align: center;">
         <div class="container" style="max-width: 700px;">
           <h2>Jelajahi Publikasi Kami</h2>
-          <div class="gold-divider"></div>
-          
-          <button class="btn" id="btn-bottom-katalog">Lihat Katalog Buku</button>
+          <button class="btn" id="btn-bottom-katalog" style="margin-top: 55px;">Lihat Katalog Buku</button>
         </div>
       </section>
     `;
@@ -256,7 +254,7 @@ class KDKWebsiteApp {
           <div class="about-grid">
             <div class="about-text">
               <span class="badge">Profil Perusahaan</span>
-              <h2>Mengenal PT Kunci Daya Kreasi</h2>
+              <h2>Penerbitan dengan Visi dan Integritas</h2>
               <p>PT Kunci Daya Kreasi merupakan perusahaan penerbitan buku independen yang berbadan hukum di Indonesia.</p>
               <p>Perusahaan didirikan dengan komitmen untuk mengembangkan dan menerbitkan karya-karya berkualitas yang memiliki nilai intelektual, orisinalitas, serta relevansi bagi pembaca.</p>
               <p>Kami memandang penerbitan bukan sekadar kegiatan produksi dan distribusi buku, melainkan juga tanggung jawab dalam menghadirkan karya yang bernilai dan dapat memberikan kontribusi bermakna bagi pembacanya.</p>
@@ -368,7 +366,7 @@ class KDKWebsiteApp {
         <div class="container">
           <div class="hero-content">
             <h1>Katalog Buku</h1>
-            <div class="subtitle">Daftar publikasi atau karya yang sedang dipersiapkan untuk penerbitan</div>
+            <div class="subtitle">Daftar Publikasi / Karya Penerbitan</div>
           </div>
         </div>
       </section>
@@ -503,7 +501,7 @@ class KDKWebsiteApp {
                 <div class="contact-detail-item">
                   <div class="contact-icon">📍</div>
                   <div>
-                    <strong style="display: block; color: var(--gold); margin-bottom: 4px;">Alamat Resmi</strong>
+                    <strong style="display: block; color: var(--gold); margin-bottom: 4px;">Alamat </strong>
                     <span style="color: rgba(255,255,255,0.9); font-size: 15px;">${this.company.officialAddress}</span>
                   </div>
                 </div>
@@ -511,7 +509,7 @@ class KDKWebsiteApp {
                 <div class="contact-detail-item">
                   <div class="contact-icon">✉️</div>
                   <div>
-                    <strong style="display: block; color: var(--gold); margin-bottom: 4px;">Email Resmi</strong>
+                    <strong style="display: block; color: var(--gold); margin-bottom: 4px;">Email </strong>
                     <a href="mailto:${this.company.officialEmail}" style="color: rgba(255,255,255,0.9); font-size: 15px;">${this.company.officialEmail}</a>
                   </div>
                 </div>
@@ -519,7 +517,7 @@ class KDKWebsiteApp {
                 <div class="contact-detail-item">
                   <div class="contact-icon">🌐</div>
                   <div>
-                    <strong style="display: block; color: var(--gold); margin-bottom: 4px;">Website Resmi</strong>
+                    <strong style="display: block; color: var(--gold); margin-bottom: 4px;">Website </strong>
                     <a href="https://${this.company.officialDomain}" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.9); font-size: 15px;">https://${this.company.officialDomain}</a>
                   </div>
                 </div>
