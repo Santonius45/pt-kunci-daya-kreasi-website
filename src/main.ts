@@ -626,27 +626,49 @@ class KDKWebsiteApp {
   }
 
   private bindEvents(): void {
-    // Accessible mobile navigation toggle.
+    // Mobile navigation: keep the state and accessibility attributes in sync.
+    // The listener is attached to the current header so it is replaced cleanly
+    // whenever the SPA renders a new page.
+    const header = document.querySelector('header');
     const mobileMenuButton = document.getElementById('btn-mobile') as HTMLButtonElement | null;
     const primaryNavigation = document.getElementById('primary-navigation');
 
-    mobileMenuButton?.addEventListener('click', () => {
-      const isOpen = primaryNavigation?.classList.toggle('is-open') ?? false;
+    const setMobileNavigationState = (isOpen: boolean): void => {
+      if (!mobileMenuButton || !primaryNavigation) return;
+
+      primaryNavigation.classList.toggle('is-open', isOpen);
       mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
       mobileMenuButton.setAttribute('aria-label', isOpen ? 'Tutup navigasi' : 'Buka navigasi');
       mobileMenuButton.innerHTML = isOpen
         ? '<span aria-hidden="true">×</span>'
         : '<span aria-hidden="true">☰</span>';
+    };
+
+    mobileMenuButton?.addEventListener('click', (event: MouseEvent) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const isOpen = mobileMenuButton.getAttribute('aria-expanded') !== 'true';
+      setMobileNavigationState(isOpen);
     });
 
-    // Close the dropdown when another part of the header is selected.
-    document.querySelector('header')?.addEventListener('click', (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
+    // Close when the user selects an area of the header outside the menu/button.
+    // pointerdown is used so the state closes immediately on touch devices too.
+    header?.addEventListener('pointerdown', (event: PointerEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
       if (target.closest('#btn-mobile') || target.closest('#primary-navigation')) return;
-      primaryNavigation?.classList.remove('is-open');
-      mobileMenuButton?.setAttribute('aria-expanded', 'false');
-      mobileMenuButton?.setAttribute('aria-label', 'Buka navigasi');
-      if (mobileMenuButton) mobileMenuButton.innerHTML = '<span aria-hidden="true">☰</span>';
+      setMobileNavigationState(false);
+    });
+
+    // Allow keyboard users to close the menu with Escape.
+    header?.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      if (mobileMenuButton?.getAttribute('aria-expanded') !== 'true') return;
+
+      setMobileNavigationState(false);
+      mobileMenuButton?.focus();
     });
 
     // Allow keyboard users to activate the brand link.
@@ -752,6 +774,7 @@ class KDKWebsiteApp {
       });
     }
   }
+
 }
 
 // Instantiate application on window load

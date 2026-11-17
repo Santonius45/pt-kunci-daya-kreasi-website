@@ -748,28 +748,45 @@ footer {
   
   .header-container {
     position: relative;
+    overflow: visible;
   }
 
   .nav-right {
+    position: static;
     gap: 0;
   }
 
+  /*
+   * Mobile dropdown is deliberately independent from Scroll Reveal.
+   * No transform is applied to the header, nav, or their parent elements.
+   */
   .nav-right nav {
-    display: none;
+    display: block;
     position: absolute;
-    top: 100%;
+    top: calc(100% - 1px);
     right: 24px;
-    z-index: 1001;
-    width: min(290px, calc(100vw - 48px));
+    z-index: 2002;
+    width: min(320px, calc(100vw - 48px));
+    max-height: min(70vh, 420px);
+    overflow-x: hidden;
+    overflow-y: auto;
     padding: 10px;
     background: var(--navy);
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 0 0 10px 10px;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    -webkit-overflow-scrolling: touch;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease, visibility 180ms ease;
   }
 
   .nav-right nav.is-open {
     display: block;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav-right nav ul {
@@ -806,7 +823,10 @@ footer {
   }
 
   .mobile-menu-btn {
+    position: relative;
+    z-index: 2003;
     display: flex;
+    flex: 0 0 44px;
     align-items: center;
     justify-content: center;
     width: 44px;
@@ -816,6 +836,9 @@ footer {
     border-radius: 8px;
     font-size: 27px;
     line-height: 1;
+    color: var(--white);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .mobile-menu-btn:hover,
@@ -823,6 +846,11 @@ footer {
     color: var(--gold);
     border-color: var(--gold);
     outline: none;
+  }
+
+  .mobile-menu-btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
   }
 
   .header-logo {
@@ -1080,5 +1108,19 @@ footer {
     transform: none;
     transition: none;
     will-change: auto;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .nav-right nav {
+    right: 12px;
+    width: min(320px, calc(100vw - 24px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-right nav {
+    transition: none;
   }
 }
